@@ -266,44 +266,58 @@ model.fit(X_train_full, y_train_full)
         # Notebook Image
         st.image("Screenshot_252.png")
         
+        # --- THIS IS THE FIXED SECTION ---
+        # Call st.markdown and st.image separately
+        
         st.markdown(f"""
         ### Accuracy Score: {accuracy:.2%}
         * This indicates that the model correctly predicts whether a passenger survived or not **{accuracy:.2%}** of the time. It's a good measure of the model's overall performance.
+        """)
         
-        {st.image("Screenshot_254.png", width=300)} # Using st.image inline
+        st.image("Screenshot_254.png", width=300)
         
+        st.markdown(f"""
         ### Precision Score: {precision:.2%}
         * Precision measures the accuracy of *positive* predictions. When the model predicts a passenger survived, it is correct **{precision:.2%}** of the time.
+        """)
         
-        {st.image("Screenshot_254.png", width=300)}
+        st.image("Screenshot_254.png", width=300)
         
+        st.markdown(f"""
         ### Recall Score: {recall:.2%}
         * Recall measures the model's ability to find all actual survivors. The model correctly identifies **{recall:.2%}** of all people who *actually* survived.
+        """)
         
-        {st.image("Screenshot_254.png", width=300)}
+        st.image("Screenshot_254.png", width=300)
 
+        st.markdown(f"""
         ### F1 Score: {f1:.2f}
         * The F1 Score is the weighted average of precision and recall. At **{f1:.2f}**, it suggests a good balance between precision and recall.
+        """)
         
-        {st.image("Screenshot_254.png", width=300)}
+        st.image("Screenshot_254.png", width=300)
         
+        conf_matrix = confusion_matrix(y_test, y_pred) # Recalculate just in case for this tab
+        st.markdown(f"""
         ### Confusion Matrix Breakdown
         * **True Negatives (TN):** {conf_matrix[0, 0]} (Correctly predicted non-survivors)
         * **False Positives (FP):** {conf_matrix[0, 1]} (Incorrectly predicted as survivors)
         * **False Negatives (FN):** {conf_matrix[1, 0]} (Incorrectly predicted as non-survivors)
         * **True Positives (TP):** {conf_matrix[1, 1]} (Correctly predicted survivors)
+        """)
         
-        {st.image("Screenshot_253.png", width=300)}
+        st.image("Screenshot_253.png", width=300)
         
+        st.markdown("""
         ### Overall
         The logistic regression model shows a strong ability to predict survival, with high accuracy and precision.
         """)
         
         st.image("Screenshot_250FF.png")
+        # --- END OF FIXED SECTION ---
 
 else:
     st.header("Welcome to the Titanic Survival Prediction App 🚢")
     st.subheader("Please upload the `train.csv` and `test.csv` files in the sidebar to begin.")
     st.image("https://upload.wikimedia.org/wikipedia/commons/thumb/f/fd/RMS_Titanic_3.jpg/1280px-RMS_Titanic_3.jpg", 
-
              caption="RMS Titanic departing from Southampton on April 10, 1912.")
